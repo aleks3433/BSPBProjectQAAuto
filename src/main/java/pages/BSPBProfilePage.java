@@ -1,8 +1,8 @@
 package pages;
 
 import framework.BrowserManager;
+import framework.Utils;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -31,20 +31,18 @@ public class BSPBProfilePage {
     }
 
     public BSPBStatementPage hoverOnAccountAndClickOnStatement() {
-        Actions moveToAccount = new Actions(BrowserManager.getBrowser());
-        moveToAccount.moveToElement(account).build().perform();
+        Utils.moveToWebElement(account);
         statement.click();
         return PageFactory.initElements(BrowserManager.getBrowser(), BSPBStatementPage.class);
     }
 
     public BSPBExchangePage hoverOnCurrencyAndClickOnExchange() {
-        Actions moveToCurrency = new Actions(BrowserManager.getBrowser());
-        moveToCurrency.moveToElement(currency).build().perform();
+        Utils.moveToWebElement(currency);
         exchange.click();
         return PageFactory.initElements(BrowserManager.getBrowser(), BSPBExchangePage.class);
     }
 
-    public BSPBMessagesPage clickMessagesButton(){
+    public BSPBMessagesPage clickMessagesButton() {
         messagesButton.click();
         return PageFactory.initElements(BrowserManager.getBrowser(), BSPBMessagesPage.class);
     }

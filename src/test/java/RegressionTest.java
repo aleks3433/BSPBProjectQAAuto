@@ -1,12 +1,16 @@
 import framework.BrowserManager;
+import framework.CSVParser;
 import framework.Navigation;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.BSPBMessagesPage;
 import pages.BSPBPreviewExchangePage;
 import pages.BSPBProfilePage;
 import pages.BSPBStatementPage;
+
+import java.util.Iterator;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -14,7 +18,12 @@ import static org.testng.Assert.assertTrue;
 
 public class RegressionTest {
 
-    String messageText = "This is a test message";
+    //String messageText = "This is a test message";
+
+    @DataProvider(name = "testMessages")
+    public Iterator<Object[]> testMessagesFromCSV() {
+        return CSVParser.loadDataFromFile();
+    }
 
     @BeforeTest
     public void openBrowser() {
@@ -39,7 +48,7 @@ public class RegressionTest {
     }
 
     @Test
-    public void testCurrencyExchange(){
+    public void testCurrencyExchange() {
         BSPBPreviewExchangePage bspbPreviewExchangePage = Navigation.openBSPBLoginPage()
                 .clickLoginButton()
                 .clickLoginOtpButton()
@@ -53,8 +62,8 @@ public class RegressionTest {
         assertEquals(bspbPreviewExchangePage.getSuccessAlertText(), "Перевод выполнен!", "Alert text should be correct");
     }
 
-    @Test
-    public void testMessagesHistory(){
+    @Test(dataProvider = "testMessages")
+    public void testMessagesHistory(String messageText) {
         BSPBMessagesPage bspbMessagesPage = Navigation.openBSPBLoginPage()
                 .clickLoginButton()
                 .clickLoginOtpButton()

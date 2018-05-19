@@ -7,18 +7,18 @@ import org.openqa.selenium.support.PageFactory;
 
 public class BSPBLoginPage {
 
-    @FindBy (id = "login-button")
+    @FindBy(id = "login-button")
     WebElement loginButton;
 
-    @FindBy (id = "login-otp-button")
+    @FindBy(id = "login-otp-button")
     WebElement loginOtpButton;
 
-    public BSPBLoginPage clickLoginButton(){
+    public BSPBLoginPage clickLoginButton() {
         loginButton.click();
         return PageFactory.initElements(BrowserManager.getBrowser(), BSPBLoginPage.class);
     }
 
-    public BSPBProfilePage clickLoginOtpButton(){
+    public BSPBProfilePage clickLoginOtpButton() {
         loginOtpButton.click();
         return PageFactory.initElements(BrowserManager.getBrowser(), BSPBProfilePage.class);
     }

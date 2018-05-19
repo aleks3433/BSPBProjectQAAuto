@@ -7,22 +7,22 @@ import org.openqa.selenium.support.PageFactory;
 
 public class BSPBPreviewExchangePage {
 
-    @FindBy (id = "confirm")
+    @FindBy(id = "confirm")
     WebElement confirmButton;
 
-    @FindBy (css = ".alert.alert-success")
+    @FindBy(css = ".alert.alert-success")
     WebElement successAlert;
 
-    @FindBy (id = "confirmation-frame")
+    @FindBy(id = "confirmation-frame")
     WebElement confirmationFrame;
 
-    public BSPBPreviewExchangePage clickConfirm(){
+    public BSPBPreviewExchangePage clickConfirm() {
         BrowserManager.getBrowser().switchTo().frame(confirmationFrame);
         confirmButton.click();
         return PageFactory.initElements(BrowserManager.getBrowser(), BSPBPreviewExchangePage.class);
     }
 
-    public String getSuccessAlertText(){
+    public String getSuccessAlertText() {
         return successAlert.getText();
     }
 }

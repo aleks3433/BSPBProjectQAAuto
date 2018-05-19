@@ -20,7 +20,7 @@ public class BrowserManager {
         browser.get().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
-    public static void closeBrowser(){
+    public static void closeBrowser() {
         browser.get().quit();
     }
 
